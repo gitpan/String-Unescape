@@ -1,10 +1,11 @@
 package String::Unescape;
 
+use 5.008;
 use strict;
 use warnings;
 
 # ABSTRACT: Unescape perl-escaped string
-our $VERSION = 'v0.0.1'; # VERSION
+our $VERSION = 'v0.0.2'; # VERSION
 
 require Exporter;
 our (@EXPORT_OK) = qw(unescape);
@@ -154,7 +155,7 @@ String::Unescape - Unescape perl-escaped string
 
 =head1 VERSION
 
-version v0.0.1
+version v0.0.2
 
 =head1 SYNOPSIS
 
@@ -208,6 +209,10 @@ For 3 and 4, t/quirks_in_perl.t contains actual examples.
 =head2 C<unescape($str)>
 
 Returns unescaped C<$str>. For escaping, see L<perlop/Quote-and-Quote-like-Operators>.
+
+=head1 REMARKS
+
+L<charnames> in Perl 5.6 does not have required functionality that is Unicode name E<lt>-E<gt> code conversion in runtime, thus Perl 5.6 support is explicitly dropped.
 
 =head1 AUTHOR
 
