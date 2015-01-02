@@ -4,7 +4,7 @@
       "Yasutaka ATARASHI <yakex@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 5.016, CPAN::Meta::Converter version 2.132140",
+   "generated_by" : "Dist::Zilla version 5.015, CPAN::Meta::Converter version 2.142060",
    "license" : [
       "perl_5"
    ],
@@ -50,6 +50,6 @@
          "web" : "https://github.com/yak1ex/String-Unescape"
       }
    },
-   "version" : "v0.0.2"
+   "version" : "v0.0.3"
 }
 

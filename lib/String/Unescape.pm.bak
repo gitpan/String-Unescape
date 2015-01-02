@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 # ABSTRACT: Unescape perl-escaped string
-our $VERSION = 'v0.0.3'; # VERSION
+# VERSION
 
 require Exporter;
 our (@EXPORT_OK) = qw(unescape);
@@ -144,18 +144,7 @@ sub unescape
 }
 
 1;
-
 __END__
-
-=pod
-
-=head1 NAME
-
-String::Unescape - Unescape perl-escaped string
-
-=head1 VERSION
-
-version v0.0.3
 
 =head1 SYNOPSIS
 
@@ -182,47 +171,20 @@ If the result is different from one by Perl beyond the limitation, it is conside
 
 There are the following exceptions that Perl's behavior is not emulated.
 
-=over 4
-
-=item 1
-
-Whether warning is produced or not.
-
-=item 2
-
-Strings that perl doesn't accept. For those strings, the results by this module are undefined.
-
-=item 3
-
-\L in \U and \U in \L. By perl, they are not stacked, which means all \Q, \L, \U and \F (if available) modifiers from the prior \L, \U or \F become to have no effect then restart the new \L, \U or \F conversion. By this module, stacked.
-
-=item 4
-
-\L\u and \U\l. By Perl, they are swapped as \u\L and \l\U, respectively. By this module, not swapped.
-
-=back
+=for :list
+1. Whether warning is produced or not.
+2. Strings that perl doesn't accept. For those strings, the results by this module are undefined.
+3. \L in \U and \U in \L. By perl, they are not stacked, which means all \Q, \L, \U and \F (if available) modifiers from the prior \L, \U or \F become to have no effect then restart the new \L, \U or \F conversion. By this module, stacked.
+4. \L\u and \U\l. By Perl, they are swapped as \u\L and \l\U, respectively. By this module, not swapped.
 
 For 3 and 4, t/quirks_in_perl.t contains actual examples.
 
-=head1 METHODS
-
-=head2 C<unescape($str)>
+=method C<unescape($str)>
 
 Returns unescaped C<$str>. For escaping, see L<perlop/Quote-and-Quote-like-Operators>.
 
 =head1 REMARKS
 
 L<charnames> in Perl 5.6 does not have required functionality that is Unicode name E<lt>-E<gt> code conversion in runtime, thus Perl 5.6 support is explicitly dropped.
-
-=head1 AUTHOR
-
-Yasutaka ATARASHI <yakex@cpan.org>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2013 by Yasutaka ATARASHI.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
 
 =cut

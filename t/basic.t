@@ -3,9 +3,12 @@ use Test::Exception;
 
 #use charnames qw(:full);
 
-# See rt#95224 or gh-6
-# Excluding ", and ; if necessary
-my @cchar = $^V lt v5.19.9 ? (0..33,35..127) : (0.33,35..122,124..127);
+my @cchar =
+    $^V lt v5.19.9 ? (0..33,35..127) :
+# Excluding ", and ; if necessary, see rt#95224 or gh-6
+    $^V lt v5.21.1 ? (0..33,35..122,124..127) :
+# Limit ASCII printable characters only, see rt#100840 or gh-8
+                     (grep { chr($_) =~ /[[:print:]]/ } (0..33,35..122,124..127));
 
 my @case = (
     ['\t\n\r\f\b\a\e', 'constant one chars'],
@@ -27,6 +30,7 @@ use_ok 'String::Unescape';
 foreach my $str (@case) {
 # At least, perl 5.8.9 requires 'use charnames qw(:full)' in each eval
     my $expected = eval "use charnames qw(:full); \"$str->[0]\"";
+    diag $@ if $@;
     my $got = String::Unescape::unescape($str->[0]);
     is($got, $expected, "func: $str->[1]");
     $got = String::Unescape->unescape($str->[0]);
